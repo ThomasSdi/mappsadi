@@ -1,5 +1,5 @@
-import { AdressSchema } from "@/database/schemas/AdressSchema"
-import mongoose from "mongoose"
+import { schemaAdresse } from "@/database/schemas/AdressesSchema";
+import mongoose from "mongoose";
 
-export const TodoModel =
-  mongoose.models.Todo || mongoose.model("Todo", AdressSchema)
+export const AdressesModel =
+  mongoose.models.Adresses || mongoose.model("Adresses", schemaAdresse);

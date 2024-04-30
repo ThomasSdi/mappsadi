@@ -1,33 +1,40 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Image from 'next/image'; // Importer le composant Image de Next.js
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 const Header = () => {
-    return (
-        <header>
-            {/* Logo */}
-            <div className="logo">
-                <Link to="/">
-                    {/* Utiliser le composant Image de Next.js */}
-                    <Image src="/AdiMaps.png" alt="Logo de votre site web" width={100} height={100} />
-                </Link>
-            </div>
-            {/* Liens de navigation */}
-            <nav>
-                <ul>
-                    {/* Lien vers la page d'accueil */}
-                    <li>
-                        <Link to="/">Liste</Link>
-                    </li>
-                    {/* Lien vers la page d'ajout */}
-                    <li>
-                        <Link to="/ajout">Ajout</Link>
-                    </li>
-                    {/* Ajoutez d'autres liens ici si nécessaire */}
-                </ul>
-            </nav>
-        </header>
-    );
-}
+  return (
+    <header className="flex items-center">
+      <div className="logo">
+        <Link href="/">
+          <Image
+            src="/AdiMaps.png"
+            alt="AdiMaps logo"
+            width={100}
+            height={100}
+          />
+        </Link>
+      </div>
+      <nav className="flex gap-3 mx-4">
+        <ul className="flex flex-row">
+          <li key="add">
+            <Link href="/ajout">
+              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Ajout
+              </button>
+            </Link>
+          </li>
+          <li key="liste">
+            <Link href="/">
+              <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                Liste
+              </button>
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+  );
+};
 
 export default Header;
