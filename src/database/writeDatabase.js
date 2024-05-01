@@ -1,7 +1,7 @@
-import { writeFile } from "node:fs/promises"
+import { writeFile } from "node:fs/promises";
 
 export const writeDatabase = async (newDatabase) => {
-  const json = JSON.stringify(newDatabase)
+  const json = JSON.stringify(newDatabase);
 
-  await writeFile("./db.json", json, { encoding: "utf-8" })
-}
+  await writeFile("./db.json", json, { encoding: "utf-8" });
+};
