@@ -5,7 +5,7 @@ import { AdressesModel } from "@/database/models/AdressesModel"
 
 const handler = createRoute(async (req, res) => {
   const { adresseId } = req.query
-  const adresse = await AdressesModel.findById(adresseId)
+  let adresse = await AdressesModel.findById(adresseId)
 
   if (!adresse) {
     res.status(404).send({ error: "non trouvé" })
@@ -18,18 +18,18 @@ const handler = createRoute(async (req, res) => {
   }
 
   if (req.method === "PUT") {
-    const { type, nom, adresse, ville, codePostal, pays } = req.body
+    const { type, nom, adresse: newAdresse, ville, codePostal, pays } = req.body
 
-    Object.assign(adresse, {
+    adresse = {
       type,
       nom,
-      adresse,
+      adresse: newAdresse,
       ville,
       codePostal,
       pays,
-    })
+    }
 
-    await adresse.save()
+    await AdressesModel.findByIdAndUpdate(adresseId, adresse)
 
     res.send(adresse)
     return
