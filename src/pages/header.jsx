@@ -1,37 +1,50 @@
-import React from "react";
-import Image from "next/image";
-import Link from "next/link";
+import React from "react"
+import Image from "next/image"
+import Link from "next/link"
 
 const Header = () => {
   return (
-    <header className="fixed top-0 left-0 w-full z-10 flex items-center h-12">
-      <div className="logo">
-        <Link href="/">
-          <Image src="/AdiMaps.png" alt="AdiMaps logo" width={80} height={80} />
-        </Link>
-      </div>
-      <nav className="flex flex-row items-center gap-3 mx-4">
-        <ul className="flex flex-row items-center">
-          <li key="liste">
+    <header className="sticky top-0 left-0 w-full z-10 h-16 bg-white py-2 px-6 shadow-md">
+      <nav className="flex justify-between items-center">
+        <ul className="nav-left">
+          <li>
             <Link href="/">
-              <button className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-1 px-3 rounded">
-                Accueil
-              </button>
+              <Image
+                src="/maison.png"
+                alt="Accueil"
+                width={40}
+                height={40}
+                className="hover:scale-110 transition duration-400 ease-in-out"
+              />
             </Link>
           </li>
         </ul>
-        <ul className="flex flex-row items-center">
-          <li key="add">
+        <div className="logo flex justify-center">
+          <Link href="/">
+            <Image
+              src="/logo.png"
+              alt="MapsSadi logo"
+              width={120}
+              height={120}
+            />
+          </Link>
+        </div>
+        <ul className="nav-right">
+          <li>
             <Link href="/ajout">
-              <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded ml-4">
-                Ajout
-              </button>
+              <Image
+                src="/ajout.png"
+                alt="Ajout"
+                width={40}
+                height={40}
+                className="hover:scale-110 transition duration-400 ease-in-out"
+              />
             </Link>
           </li>
         </ul>
       </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

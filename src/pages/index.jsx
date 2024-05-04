@@ -8,6 +8,7 @@ const Adresses = () => {
   const [selectedFilter, setSelectedFilter] = useState("")
   const [selectedAddress, setSelectedAddress] = useState(null)
   const [hoveredAddress, setHoveredAddress] = useState(null)
+  const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
     const fetchAdresses = async () => {
@@ -23,9 +24,19 @@ const Adresses = () => {
 
   const indexOfLastAddress = currentPage * addressesPerPage
   const indexOfFirstAddress = indexOfLastAddress - addressesPerPage
-  const currentAddresses = adresses
-    .filter((adresse) => !selectedFilter || adresse.type === selectedFilter)
-    .slice(indexOfFirstAddress, indexOfLastAddress)
+  let filteredAddresses = adresses.filter(
+    (adresse) =>
+      (!selectedFilter || adresse.type === selectedFilter) &&
+      (searchTerm === "" ||
+        adresse.nom.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        adresse.ville.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        adresse.codePostal.toLowerCase().includes(searchTerm.toLowerCase()))
+  )
+
+  const currentAddresses = filteredAddresses.slice(
+    indexOfFirstAddress,
+    indexOfLastAddress
+  )
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
 
@@ -73,8 +84,12 @@ const Adresses = () => {
       })
   }
 
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value)
+  }
+
   return (
-    <div className="flex justify-center items-center h-screen background-image">
+    <div className="flex justify-center items-center mt-4 background-image">
       <div className="w-full bg-white p-8 rounded shadow-lg text-center">
         <h1 className="text-2xl font-bold mb-4">Liste des adresses</h1>
         <div className="mb-4">
@@ -93,6 +108,15 @@ const Adresses = () => {
             <option value="Bar">Bar</option>
             <option value="Parc">Parc</option>
           </select>
+        </div>
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Rechercher par nom, ville ou code postal"
+            value={searchTerm}
+            onChange={handleSearchChange}
+            className="w-full p-2 pl-10 text-sm text-gray-800 border border-gray-300 rounded"
+          />
         </div>
         <div className="grid grid-cols-2 gap-4">
           {currentAddresses.map((adresse) => (
@@ -222,7 +246,7 @@ const Adresses = () => {
             </div>
           </div>
         )}
-        <div className="mt-4 flex justify-center items-center">
+        <div className="mt-6 flex justify-center items-center">
           {currentPage > 1 && (
             <button
               onClick={() => paginate(currentPage - 1)}
