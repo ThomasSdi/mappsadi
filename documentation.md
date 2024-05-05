@@ -90,7 +90,7 @@ Le Footer est le pied de page qui apparaît en bas de chaque page. Il contient l
 
 ## **Mes fonctionnalitées**
 
-*Ajout d'adresses dans une base de donnée
-*Modifications d'adresses/ Suppression d'adresses
-*Filtre de recherche
-*Recherche dans la base de donnée
+- Ajout d'adresses dans une base de donnée
+- Modifications d'adresses/ Suppression d'adresses
+- Filtre de recherche
+- Recherche dans la base de donnée
