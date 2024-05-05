@@ -9,7 +9,7 @@ Pour installer et utiliser le site, suivez les étapes suivantes :
 Commencez par cloner le dépôt GitHub en utilisant la commande suivante :
 
 ```bash
-git clone https://github.com/votre-username/votre-depot.git
+git clone https://github.com/ThomasSdi/mappsadi.git
 ```
 
 2. **Installer des dépendances**
